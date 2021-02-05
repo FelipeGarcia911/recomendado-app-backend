@@ -49,7 +49,6 @@ const all = {
   mongo: {
     options: {
       poolSize: 2,
-      safe: true,
       useCreateIndex: true,
       useFindAndModify: false,
       useNewUrlParser: true,
