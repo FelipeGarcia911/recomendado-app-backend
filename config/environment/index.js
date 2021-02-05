@@ -48,11 +48,12 @@ const all = {
   // MongoDB connection options
   mongo: {
     options: {
-      db: {
-        safe: true,
-      },
-      useMongoClient: true,
       poolSize: 2,
+      safe: true,
+      useCreateIndex: true,
+      useFindAndModify: false,
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
     },
   },
 

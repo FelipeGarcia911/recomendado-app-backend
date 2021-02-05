@@ -10,6 +10,7 @@ const User = require('../api/user/user.model');
 
 const validateJwt = expressJwt({
   secret: config.secrets.session,
+  algorithms: ['RS256'],
 });
 
 /**
