@@ -22,7 +22,7 @@
     "mongodb",
     "passport"
   ],
-  "author": "Cristian Moreno <khriztianmoreno@gmail.com>",
+  "author": "Cristian Moreno <arfgarciama@unal.edu.co>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/khriztianmoreno/nodejs-scaffolding/issues"

@@ -1,6 +1,6 @@
 /**
  * Using Rails-like standard naming convention for endpoints.
- * @author: Cristian Moreno Zuluaga <khriztianmoreno@gmail.com>
+ * @author: Felipe Garcia <arfgarciama@unal.edu.co>
  */
 
 const { HTTP_STATUS, ERROR_CODES } = require('../constants');

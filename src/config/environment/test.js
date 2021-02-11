@@ -1,6 +1,6 @@
 /**
  * Test specific configuration
- * @author: Cristian Moreno Zulauaga <khriztianmoreno@gmail.com>
+ * @author: Felipe Garcia <arfgarciama@unal.edu.co>
  */
 
 module.exports = {

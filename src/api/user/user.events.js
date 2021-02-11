@@ -1,6 +1,6 @@
 /**
  * User model events
- * @author: Cristian Moreno Zuluaga <khriztianmoreno@gmail.com>
+ * @author: Felipe Garcia <arfgarciama@unal.edu.co>
  */
 
 const { EventEmitter } = require('events');

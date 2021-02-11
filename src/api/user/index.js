@@ -1,6 +1,6 @@
 /**
  * User
- * @author: Cristian Moreno Zuluaga <khriztianmoreno@gmail.com>
+ * @author: Felipe Garcia <arfgarciama@unal.edu.co>
  */
 
 const { Router } = require('express');
