@@ -18,7 +18,6 @@ function validationError(res, statusCode) {
 
 /**
  * Get list of users
- * restriction: 'admin'
  */
 const index = async (req, res) => {
   try {
@@ -58,7 +57,7 @@ const show = async (req, res) => {
 
   try {
     const user = await User.findById(id, FORBIDDEN_FIELDS).exec();
-    if (user) return handleSuccess(res, user);
+    if (user) return handleSuccess(res, user.details);
 
     return handleError(res, null, HTTP_STATUS.NOT_FOUND, ERROR_CODES.USER_NOT_FOUND);
   } catch (error) {
@@ -82,41 +81,37 @@ const destroy = async (req, res) => {
 /**
  * Change a users password
  */
-const changePassword = (req, res) => {
+const changePassword = async (req, res) => {
   const userId = req.user._id;
   const oldPass = String(req.body.oldPassword);
   const newPass = String(req.body.newPassword);
 
-  return User.findById(userId).exec()
-    .then((user) => {
-      if (user.authenticate(oldPass)) {
-        const userChange = user;
-        userChange.password = newPass;
-        return userChange.save()
-          .then(() => {
-            res.status(204).end();
-          })
-          .catch(validationError(res));
-      }
-
-      return res.status(403).end();
-    });
+  const user = await User.findById(userId).exec();
+  if (user.authenticate(oldPass)) {
+    const userChange = user;
+    userChange.password = newPass;
+    return userChange.save()
+      .then(() => {
+        res.status(204).end();
+      })
+      .catch(validationError(res));
+  }
+  return res.status(403).end();
 };
 
 /**
  * Get my info
  */
-const me = (req, res, next) => {
-  const userId = req.user._id;
+const me = async (req, res, next) => {
+  try {
+    const { _id } = req.user;
+    const user = await User.findById({ _id }, FORBIDDEN_FIELDS).exec();
+    if (user) return handleSuccess(res, user.details);
 
-  return User.findOne({ _id: userId }, '-password').exec()
-    .then((user) => { // don't ever give out the password or salt
-      if (!user) {
-        return res.status(401).end();
-      }
-      return res.json(user);
-    })
-    .catch((err) => next(err));
+    return handleError(res, null, HTTP_STATUS.NOT_FOUND, ERROR_CODES.USER_NOT_FOUND);
+  } catch (err) {
+    return next(err);
+  }
 };
 
 /**

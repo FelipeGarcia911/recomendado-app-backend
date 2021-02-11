@@ -34,8 +34,8 @@ const UserSchema = new Schema({
  */
 
 // Public profile information
-UserSchema.virtual('user').get(function () {
-  return { name: this.name, email: this.email, profile: this.profile };
+UserSchema.virtual('details').get(function () {
+  return { _id: this._id, name: this.name, email: this.email, profile: this.profile };
 });
 
 /**

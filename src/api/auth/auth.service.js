@@ -11,7 +11,7 @@ const User = require('../user/user.model');
 
 const validateJwt = expressJwt({
   secret: config.secrets.session,
-  algorithms: ['RS256'],
+  algorithms: ['sha1', 'RS256', 'HS256'],
 });
 
 /**
@@ -40,26 +40,6 @@ function isAuthenticated() {
           return null;
         })
         .catch((err) => next(err));
-    });
-}
-
-/**
- * Checks if the user role meets the minimum requirements of the route
- */
-function hasRole(roleRequired) {
-  if (!roleRequired) {
-    throw new Error('Required role needs to be set');
-  }
-
-  return compose()
-    .use(isAuthenticated())
-    .use((req, res, next) => {
-      const { role } = req.user;
-      if ((~config.userRoles.indexOf(role)) && (~roleRequired.indexOf(role))) {
-        next();
-      } else {
-        res.status(403).send('Forbidden');
-      }
     });
 }
 
@@ -95,5 +75,5 @@ function setTokenCookie(req, res) {
 }
 
 module.exports = {
-  isAuthenticated, hasRole, decodedToken, signToken, setTokenCookie,
+  isAuthenticated, decodedToken, signToken, setTokenCookie,
 };

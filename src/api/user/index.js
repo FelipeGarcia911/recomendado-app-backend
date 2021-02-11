@@ -15,12 +15,12 @@ const router = new Router();
  */
 
 // DELETE Routes
-router.delete('/:id', controller.destroy);
+router.delete('/:id', auth.isAuthenticated(), controller.destroy);
 
 // GET Routes
-router.get('/:id', controller.show);
 router.get('/', controller.index);
 router.get('/me', auth.isAuthenticated(), controller.me);
+router.get('/:id', controller.show);
 
 // POST Routes
 router.post('/', controller.create);
