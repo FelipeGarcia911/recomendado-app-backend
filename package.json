@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "add": "all-contributors add",
-    "dev": "nodemon index.js",
+    "dev": "brew services start mongodb-community@4.4 && nodemon index.js",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
     "generate": "all-contributors generate",
     "jshint": "jshint src/. test/. --config",
@@ -43,7 +43,6 @@
     "connect-mongo": "^3.2.0",
     "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
-    "ejs": "^3.1.6",
     "errorhandler": "^1.5.1",
     "express": "^4.17.1",
     "express-jwt": "^6.0.0",

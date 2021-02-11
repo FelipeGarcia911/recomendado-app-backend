@@ -14,7 +14,7 @@ function setup(User, config) {
   },
   (accessToken, refreshToken, profile, done) => {
     User.findOne({ 'google.id': profile.id }).exec()
-      .then(user => {
+      .then((user) => {
         if (user) {
           return done(null, user);
         }
@@ -28,10 +28,10 @@ function setup(User, config) {
           google: profile._json,
         });
         user.save()
-          .then(user => done(null, user))
-          .catch(err => done(err));
+          .then((user) => done(null, user))
+          .catch((err) => done(err));
       })
-      .catch(err => done(err));
+      .catch((err) => done(err));
   }));
 }
 

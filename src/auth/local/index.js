@@ -5,7 +5,7 @@
 
 const express = require('express');
 const passport = require('passport');
-const signToken = require('../auth.service').signToken;
+const { signToken } = require('../auth.service');
 
 const router = express.Router();
 

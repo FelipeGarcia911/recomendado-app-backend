@@ -3,19 +3,17 @@
  * @author: Cristian Moreno Zulauaga <khriztianmoreno@gmail.com>
  */
 
-const express = require('express');
-const morgan = require('morgan');
-const compression = require('compression');
 const bodyParser = require('body-parser');
-const methodOverride = require('method-override');
+const compression = require('compression');
+const connectMongo = require('connect-mongo');
 const cookieParser = require('cookie-parser');
+const cors = require('cors');
 const errorHandler = require('errorhandler');
-const path = require('path');
+const methodOverride = require('method-override');
+const mongoose = require('mongoose');
+const morgan = require('morgan');
 const passport = require('passport');
 const session = require('express-session');
-const connectMongo = require('connect-mongo');
-const mongoose = require('mongoose');
-const engine = require('ejs').renderFile;
 
 const config = require('./environment');
 
@@ -24,22 +22,13 @@ const MongoStore = connectMongo(session);
 module.exports = (app) => {
   const env = app.get('env');
 
-  if (env === 'development' || env === 'test') {
-    app.use(express.static(path.join(config.root, '.tmp')));
-  }
-
-  app.set('appPath', path.join(config.root, 'client'));
-  app.use(express.static(app.get('appPath')));
-  app.use(morgan('dev'));
-
-  app.set('views', `${config.root}/server/views`);
-  app.engine('html', engine);
-  app.set('view engine', 'html');
-  app.use(compression());
-  app.use(bodyParser.urlencoded({ extended: false, limit: '50mb' }));
   app.use(bodyParser.json({ limit: '50mb' }));
-  app.use(methodOverride());
+  app.use(bodyParser.urlencoded({ extended: false, limit: '50mb' }));
+  app.use(compression());
   app.use(cookieParser());
+  app.use(cors());
+  app.use(methodOverride());
+  app.use(morgan('dev'));
   app.use(passport.initialize());
 
   // Persist sessions with MongoStore / sequelizeStore

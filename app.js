@@ -3,8 +3,8 @@
  */
 
 const express = require('express');
-const mongoose = require('mongoose');
 const http = require('http');
+const mongoose = require('mongoose');
 const winston = require('winston');
 
 const config = require('./src/config/environment');
@@ -32,7 +32,7 @@ routeConfig(app);
 
 // Start server
 function startServer() {
-  app.angularFullstack = server.listen(config.port, config.ip, () => {
+  app.backend = server.listen(config.port, config.ip, () => {
     winston.info(`Express server listening on ${config.port}, in ${app.get('env')} mode`);
   });
 }

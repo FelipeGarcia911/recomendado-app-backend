@@ -5,8 +5,8 @@
 
 const express = require('express');
 const passport = require('passport');
-const setTokenCookie = require('../auth.service').setTokenCookie;
-const signToken = require('../auth.service').signToken;
+const { setTokenCookie } = require('../auth.service');
+const { signToken } = require('../auth.service');
 
 const router = express.Router();
 
@@ -22,7 +22,7 @@ router
   }), setTokenCookie)
   .post('/', passport.authenticate('facebook-token'),
     (req, res) => {
-      const user = req.user;
+      const { user } = req;
       if (!user) {
         return res.status(401).json({ message: 'Error' });
       }
@@ -33,7 +33,6 @@ router
       };
       const token = signToken(user._id, userToken);
       res.json({ token });
-    }
-  );
+    });
 
 module.exports = router;

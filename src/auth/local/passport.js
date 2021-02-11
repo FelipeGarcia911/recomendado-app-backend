@@ -8,26 +8,25 @@ const LocalStrategy = require('passport-local').Strategy;
 
 function localAuthenticate(User, email, password, done) {
   User.findOne({
-    email: email.toLowerCase()
+    email: email.toLowerCase(),
   }).exec()
-    .then(user => {
-      if(!user) {
+    .then((user) => {
+      if (!user) {
         return done(null, false, {
-          message: 'This email is not registered.'
+          message: 'This email is not registered.',
         });
       }
-      user.authenticate(password, function(authError, authenticated) {
-        if(authError) {
+      user.authenticate(password, (authError, authenticated) => {
+        if (authError) {
           return done(authError);
         }
-        if(!authenticated) {
+        if (!authenticated) {
           return done(null, false, { message: 'This password is not correct.' });
-        } else {
-          return done(null, user);
         }
+        return done(null, user);
       });
     })
-    .catch(err => done(err));
+    .catch((err) => done(err));
 }
 
 function setup(User) {

@@ -14,7 +14,7 @@ function setup(User, config) {
   },
   (token, tokenSecret, profile, done) => {
     User.findOne({ 'twitter.id': profile.id }).exec()
-      .then(user => {
+      .then((user) => {
         if (user) {
           return done(null, user);
         }
@@ -27,12 +27,11 @@ function setup(User, config) {
           twitter: profile._json,
         });
         user.save()
-          .then(user => done(null, user))
-          .catch(err => done(err));
+          .then((user) => done(null, user))
+          .catch((err) => done(err));
       })
-      .catch(err => done(err));
+      .catch((err) => done(err));
   }));
 }
 
 module.exports = { setup };
-

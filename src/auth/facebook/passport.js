@@ -41,10 +41,10 @@ function setup(User, config) {
         });
 
         userToSave.save()
-          .then(userSave => done(null, userSave))
-          .catch(err => done(err));
+          .then((userSave) => done(null, userSave))
+          .catch((err) => done(err));
       })
-      .catch(err => done(err));
+      .catch((err) => done(err));
   }));
 }
 
