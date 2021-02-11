@@ -3,17 +3,29 @@
  * @author: Cristian Moreno Zuluaga <khriztianmoreno@gmail.com>
  */
 
-const Router = require('express').Router;
+const { Router } = require('express');
+
 const controller = require('./user.controller');
-const auth = require('./../../auth/auth.service');
+const auth = require('../../auth/auth.service');
 
 const router = new Router();
 
+/**
+ * Routes
+ */
+
+// DELETE Routes
+router.delete('/:id', controller.destroy);
+
+// GET Routes
+router.get('/:id', controller.show);
 router.get('/', controller.index);
-router.delete('/:id', auth.hasRole('admin'), controller.destroy);
 router.get('/me', auth.isAuthenticated(), controller.me);
-router.put('/:id/password', auth.isAuthenticated(), controller.changePassword);
-router.get('/:id', auth.isAuthenticated(), controller.show);
+
+// POST Routes
 router.post('/', controller.create);
+
+// PUT Routes
+router.put('/:id/password', auth.isAuthenticated(), controller.changePassword);
 
 module.exports = router;

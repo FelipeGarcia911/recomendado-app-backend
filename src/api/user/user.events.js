@@ -3,7 +3,8 @@
  * @author: Cristian Moreno Zuluaga <khriztianmoreno@gmail.com>
  */
 
-const EventEmitter = require('events').EventEmitter;
+const { EventEmitter } = require('events');
+
 const User = require('./user.model');
 
 const UserEvents = new EventEmitter();

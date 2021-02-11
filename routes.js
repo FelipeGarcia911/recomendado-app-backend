@@ -19,6 +19,6 @@ module.exports = (app) => {
   app.use(cors(corsOptions));
 
   // Insert routes below
-  app.use('/api/users', user);
+  app.use('/api/user', user);
   app.use('/auth', auth);
 };
