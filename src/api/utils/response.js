@@ -11,10 +11,10 @@ const getErrorLabel = (err, defaultMsg) => {
 };
 
 const handleError = (res, err, statusCode, customErrMsg) => {
-  const statusCodeLocal = statusCode || HTTP_STATUS.FAILURE;
+  const statusCodeLocal = statusCode || HTTP_STATUS.ERROR;
   const errMsg = getErrorLabel(err, customErrMsg);
 
-  const response = { status: statusCodeLocal, error: { message: errMsg, error: err } };
+  const response = { status: statusCodeLocal, response: { message: errMsg, error: err } };
 
   return res.status(statusCodeLocal).send(response);
 };

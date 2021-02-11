@@ -4,8 +4,8 @@
  */
 
 const express = require('express');
-const config = require('../config/environment');
-const User = require('../api/user/user.model');
+const config = require('../../config/environment');
+const User = require('../user/user.model');
 
 const authLocal = require('./local/passport');
 const authFacebook = require('./facebook/passport');

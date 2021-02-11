@@ -6,7 +6,9 @@ const cors = require('cors');
 
 // Import Endpoints
 const user = require('./src/api/user');
-const auth = require('./src/auth');
+const auth = require('./src/api/auth');
+
+const API_ROUTE = 'api';
 
 module.exports = (app) => {
   const whitelist = ['http://localhost:3030'];
@@ -19,6 +21,6 @@ module.exports = (app) => {
   app.use(cors(corsOptions));
 
   // Insert routes below
-  app.use('/api/user', user);
-  app.use('/auth', auth);
+  app.use(`/${API_ROUTE}/user`, user);
+  app.use(`/${API_ROUTE}/auth`, auth);
 };

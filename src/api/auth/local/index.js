@@ -3,28 +3,30 @@
  * @author: Cristian Moreno Zulauaga <khriztianmoreno@gmail.com>
  */
 
+const { get } = require('lodash');
 const express = require('express');
 const passport = require('passport');
+
+const { HTTP_STATUS } = require('../../constants');
+const { handleSuccess, handleError } = require('../../utils/response');
 const { signToken } = require('../auth.service');
 
 const router = express.Router();
 
 router.post('/', (req, res, next) => {
   passport.authenticate('local', (err, user, info) => {
-    const error = err || info;
-    if (error) {
-      return res.status(401).json(error);
+    if (err || !user) {
+      const msgError = get(info, 'message', '');
+      return handleError(res, err, HTTP_STATUS.UNAUTHORIZED, msgError);
     }
-    if (!user) {
-      return res.status(404).json({ message: 'Something went wrong, please try again.' });
-    }
+
     const userToken = {
       name: user.name,
       email: user.email,
-      additionalData: user.additionalData,
+      profile: user.profile,
     };
     const token = signToken(user._id, userToken);
-    return res.json({ token });
+    return handleSuccess(res, { token });
   })(req, res, next);
 });
 
