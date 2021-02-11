@@ -11,12 +11,13 @@ const methodOverride = require('method-override');
 const cookieParser = require('cookie-parser');
 const errorHandler = require('errorhandler');
 const path = require('path');
-const config = require('./environment');
 const passport = require('passport');
 const session = require('express-session');
 const connectMongo = require('connect-mongo');
 const mongoose = require('mongoose');
 const engine = require('ejs').renderFile;
+
+const config = require('./environment');
 
 const MongoStore = connectMongo(session);
 

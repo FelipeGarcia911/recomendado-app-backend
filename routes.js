@@ -2,14 +2,15 @@
  * Main application routes
  */
 
-const errors = require('./components/errors');
 const path = require('path');
 const cors = require('cors');
 
+const errors = require('./src/components/errors');
+
 // Import Endpoints
-const helloWorld = require('./api/helloWorld');
-const user = require('./api/user');
-const auth = require('./auth');
+const helloWorld = require('./src/api/helloWorld');
+const user = require('./src/api/user');
+const auth = require('./src/auth');
 
 module.exports = (app) => {
   const whitelist = [
@@ -31,7 +32,7 @@ module.exports = (app) => {
 
   // All undefined asset or api routes should return a 404
   app.route('/:url(api|auth|components|app|bower_components|assets)/*')
-   .get(errors[404]);
+    .get(errors[404]);
 
   // All other routes should redirect to the index.html
   app.route('/*')

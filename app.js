@@ -4,10 +4,11 @@
 
 const express = require('express');
 const mongoose = require('mongoose');
-const config = require('./config/environment');
 const http = require('http');
 const winston = require('winston');
-const expressConfig = require('./config/express');
+
+const config = require('./src/config/environment');
+const expressConfig = require('./src/config/express');
 const routeConfig = require('./routes');
 
 mongoose.Promise = require('bluebird');

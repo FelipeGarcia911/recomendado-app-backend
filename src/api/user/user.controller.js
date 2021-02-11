@@ -9,12 +9,12 @@ const config = require('../../config/environment');
 
 function validationError(res, statusCode) {
   const statusCodeLocal = statusCode || 422;
-  return err => res.status(statusCodeLocal).json(err);
+  return (err) => res.status(statusCodeLocal).json(err);
 }
 
 function handleError(res, statusCode) {
   const statusCodeLocal = statusCode || 500;
-  return err => res.status(statusCodeLocal).send(err);
+  return (err) => res.status(statusCodeLocal).send(err);
 }
 
 /**
@@ -23,7 +23,7 @@ function handleError(res, statusCode) {
  */
 function index(req, res) {
   return User.find({}, '-salt -password').exec()
-    .then(users => res.status(200).json(users))
+    .then((users) => res.status(200).json(users))
     .catch(handleError(res));
 }
 
@@ -39,7 +39,7 @@ function create(req, res) {
       const token = jwt.sign(
         { _id: user._id },
         config.secrets.session,
-        { expiresIn: 60 * 60 * 5 }
+        { expiresIn: 60 * 60 * 5 },
       );
       res.json({ token });
     })
@@ -59,7 +59,7 @@ function show(req, res, next) {
       }
       return res.json(user.profile);
     })
-    .catch(err => next(err));
+    .catch((err) => next(err));
 }
 
 /**
@@ -109,7 +109,7 @@ function me(req, res, next) {
       }
       return res.json(user);
     })
-    .catch(err => next(err));
+    .catch((err) => next(err));
 }
 
 /**

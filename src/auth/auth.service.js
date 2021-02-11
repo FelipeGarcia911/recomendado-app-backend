@@ -2,10 +2,11 @@
  * @author: Cristian Moreno Zulauaga <khriztianmoreno@gmail.com>
  */
 
-const config = require('../config/environment');
 const jwt = require('jsonwebtoken');
 const expressJwt = require('express-jwt');
 const compose = require('composable-middleware');
+
+const config = require('../config/environment');
 const User = require('../api/user/user.model');
 
 const validateJwt = expressJwt({
@@ -38,7 +39,7 @@ function isAuthenticated() {
           next();
           return null;
         })
-        .catch(err => next(err));
+        .catch((err) => next(err));
     });
 }
 
@@ -93,4 +94,6 @@ function setTokenCookie(req, res) {
   return true;
 }
 
-module.exports = { isAuthenticated, hasRole, decodedToken, signToken, setTokenCookie };
+module.exports = {
+  isAuthenticated, hasRole, decodedToken, signToken, setTokenCookie,
+};

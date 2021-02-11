@@ -1,2 +1,2 @@
 // Export the application
-exports = module.exports = require('./app');
+module.exports = require('./app');
