@@ -7,10 +7,13 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 
 const UserProfileSchema = require('./user.profile.model');
+const UserExperienceSchema = require('./user.experience.model');
+const UserServicesSchema = require('./user.services.model');
 
 const { Schema } = mongoose;
 
 const UserSchema = new Schema({
+  profile: UserProfileSchema,
   name: {
     type: String,
     lowercase: true,
@@ -26,7 +29,15 @@ const UserSchema = new Schema({
     type: String,
     required: true,
   },
-  profile: UserProfileSchema,
+  experience: [{
+    type: UserExperienceSchema,
+    default: [],
+  }],
+  services: [{
+    type: UserServicesSchema,
+    default: [],
+  }],
+  created_at: { type: Date, default: Date.now },
 });
 
 /**
@@ -35,7 +46,14 @@ const UserSchema = new Schema({
 
 // Public profile information
 UserSchema.virtual('details').get(function () {
-  return { _id: this._id, name: this.name, email: this.email, profile: this.profile };
+  return {
+    _id: this._id,
+    name: this.name,
+    email: this.email,
+    profile: this.profile,
+    services: this.services,
+    experience: this.experience,
+  };
 });
 
 /**

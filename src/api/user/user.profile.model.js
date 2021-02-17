@@ -3,16 +3,21 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const UserProfileSchema = new Schema({
-  address: { type: String, uppercase: true },
-  city: { type: String, default: 'MEDELLIN', uppercase: true },
-  country: { type: String, default: 'COLOMBIA', uppercase: true },
-  facebook: { type: String, default: '' },
-  github: { type: String, default: '' },
-  language: { type: String, default: 'ES', uppercase: true },
-  phoneNumber: { type: String, default: '' },
+  description: { type: String, default: '' },
+  phone: { type: String, default: '' },
   picture: { type: String, lowercase: true, default: '' },
-  timeZone: { type: String, default: 'America/Bogota' },
-  twitter: { type: String, default: '' },
+  location: {
+    address: { type: String, default: '' },
+    country: { type: String, default: '' },
+    state: { type: String, default: '' },
+    city: { type: String, default: '' },
+  },
+  social_networks: {
+    facebook: { type: String, default: '', lowercase: true },
+    twitter: { type: String, default: '', lowercase: true },
+    linkedin: { type: String, default: '', lowercase: true },
+    instagram: { type: String, default: '', lowercase: true },
+  },
 }, { _id: false });
 
 module.exports = UserProfileSchema;

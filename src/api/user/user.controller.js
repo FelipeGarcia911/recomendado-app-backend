@@ -43,7 +43,7 @@ const create = async (req, res) => {
     newUser.password = await newUser.encryptPassword(password);
     const savedUser = await newUser.save();
 
-    return handleSuccess(res, savedUser.user, HTTP_STATUS.CREATED);
+    return handleSuccess(res, savedUser.details, HTTP_STATUS.CREATED);
   } catch (error) {
     return handleError(res, error);
   }

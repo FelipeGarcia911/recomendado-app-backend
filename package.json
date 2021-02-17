@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "add": "all-contributors add",
-    "dev": "brew services start mongodb-community@4.4 && nodemon index.js",
+    "dev": "nodemon index.js",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
     "generate": "all-contributors generate",
     "jshint": "jshint src/. test/. --config",
