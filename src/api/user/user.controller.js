@@ -50,6 +50,30 @@ const create = async (req, res) => {
 };
 
 /**
+ * Update a user
+ */
+const update = async (req, res) => {
+  const newUserInfo = req.body;
+
+  const { _id: tokenUserId } = req.user;
+  const { id: paramsUserId } = req.params;
+
+  if (tokenUserId != paramsUserId) {
+    return handleError(res, null, HTTP_STATUS.ERROR, 'Invalid user, please check your credential');
+  }
+
+  try {
+    const query = { _id: paramsUserId };
+    const options = { new: true };
+    const user = await User.findOneAndUpdate(query, newUserInfo, options).exec();
+
+    return handleSuccess(res, user.details, HTTP_STATUS.OK);
+  } catch (error) {
+    return handleError(res, error);
+  }
+};
+
+/**
  * Get a single user
  */
 const show = async (req, res) => {
@@ -125,6 +149,7 @@ module.exports = {
   index,
   show,
   create,
+  update,
   destroy,
   changePassword,
   me,

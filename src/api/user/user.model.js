@@ -1,5 +1,5 @@
 /**
- * user model
+ * User model
  * @author: Felipe Garcia <arfgarciama@unal.edu.co>
  */
 
@@ -8,7 +8,8 @@ const bcrypt = require('bcryptjs');
 
 const UserProfileSchema = require('./user.profile.model');
 const UserExperienceSchema = require('./user.experience.model');
-const UserServicesSchema = require('./user.services.model');
+const UserServiceSchema = require('./user.services.model');
+const UserCommentSchema = require('./user.comment.model');
 
 const { Schema } = mongoose;
 
@@ -34,7 +35,11 @@ const UserSchema = new Schema({
     default: [],
   }],
   services: [{
-    type: UserServicesSchema,
+    type: UserServiceSchema,
+    default: [],
+  }],
+  comments: [{
+    type: UserCommentSchema,
     default: [],
   }],
   created_at: { type: Date, default: Date.now },
@@ -52,6 +57,7 @@ UserSchema.virtual('details').get(function () {
     email: this.email,
     profile: this.profile,
     services: this.services,
+    comments: this.comments,
     experience: this.experience,
   };
 });

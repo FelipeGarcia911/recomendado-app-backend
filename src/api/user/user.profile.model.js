@@ -6,6 +6,9 @@ const UserProfileSchema = new Schema({
   description: { type: String, default: '' },
   phone: { type: String, default: '' },
   picture: { type: String, lowercase: true, default: '' },
+  rating: {
+    type: Number, default: 3, minValue: 0, maxValue: 5,
+  },
   location: {
     address: { type: String, default: '' },
     country: { type: String, default: '' },

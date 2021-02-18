@@ -24,6 +24,7 @@ router.get('/:id', controller.show);
 
 // POST Routes
 router.post('/', controller.create);
+router.post('/:id', auth.isAuthenticated(), controller.update);
 
 // PUT Routes
 router.put('/:id/password', auth.isAuthenticated(), controller.changePassword);

@@ -2,11 +2,13 @@ const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 
-const UserServiceSchema = new Schema({
+const UserCommentSchema = new Schema({
   title: { type: String, default: '' },
   description: { type: String, default: '' },
-  price: { type: Number, default: 0 },
+  rating: {
+    type: Number, default: 3, minValue: 0, maxValue: 5,
+  },
   created_at: { type: Date, default: Date.now },
 }, { _id: false });
 
-module.exports = UserServiceSchema;
+module.exports = UserCommentSchema;
