@@ -5,11 +5,15 @@
 
 const mongoose = require("mongoose")
 const bcrypt = require("bcryptjs")
+
+// Plugins
+const paginate = require("mongoose-paginate-v2")
 const fuzzySearch = require("mongoose-fuzzy-searching")
 
 const UserProfileSchema = require("./user.profile.model")
 const UserExperienceSchema = require("./user.experience.model")
-const UserServiceSchema = require("./user.services.model")
+const UserServiceSchema = require("./user.service.model")
+const UserSkillSchema = require("./user.skill.model")
 const UserCommentSchema = require("./user.comment.model")
 
 const { Schema } = mongoose
@@ -31,6 +35,12 @@ const UserSchema = new Schema({
     type: String,
     required: true,
   },
+  skills: [
+    {
+      type: UserSkillSchema,
+      default: [],
+    },
+  ],
   experience: [
     {
       type: UserExperienceSchema,
@@ -63,6 +73,7 @@ UserSchema.virtual("details").get(function () {
     name: this.name,
     email: this.email,
     profile: this.profile,
+    skills: this.skills,
     services: this.services,
     comments: this.comments,
     experience: this.experience,
@@ -85,5 +96,6 @@ UserSchema.methods.matchPassword = async function (password) {
 }
 
 UserSchema.plugin(fuzzySearch, { fields: ["name"] })
+UserSchema.plugin(paginate)
 
 module.exports = mongoose.model("User", UserSchema)

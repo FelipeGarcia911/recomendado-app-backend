@@ -3,7 +3,6 @@
  * @author: Felipe Garcia <arfgarciama@unal.edu.co>
  */
 
-const { HTTP_STATUS, ERROR_CODES } = require("../constants")
 const { handleSuccess, handleError } = require("../utils/response")
 
 const User = require("../user/user.model")
@@ -14,8 +13,12 @@ const { FORBIDDEN_FIELDS } = require("../user/constants")
  */
 const search = async (req, res) => {
   try {
-    const users = await User.find({}, FORBIDDEN_FIELDS).exec()
-    return handleSuccess(res, users)
+    const { limit = 10, page = 1, ...query } = req.body
+    const options = { limit, page, projection: FORBIDDEN_FIELDS }
+
+    const result = await User.paginate(query, options)
+
+    return handleSuccess(res, result)
   } catch (error) {
     return handleError(res, error)
   }
