@@ -1,4 +1,5 @@
 # Node.JS - Scaffolding API
+
 [![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 
@@ -9,20 +10,21 @@ Hello, and welcome! This Node.JS sample application that demonstrates an archite
 
 ## Express Router and Routes
 
-| Route           | HTTP Verb | Route Middleware   | Description                          |
-| --------------- | --------- | ------------------ | ------------------------------------ |
-| /api/users      | GET       |                    | Get list of users                    |
-| /api/users      | POST      |                    | Creates a new user                   |
-| /api/users/:id  | GET       | `isAuthenticated`  | Get a single user                    |
-| /api/users/:id  | DELETE    | `hasRole('admin')` | Deletes a user, restriction: 'admin' |
-| /api/users/me   | GET       | `isAuthenticated`  | Get my info                          |
-| /api/users:id/password | PUT| `isAuthenticated`  | Change a users password              |
+| Route                  | HTTP Verb | Route Middleware   | Description                          |
+| ---------------------- | --------- | ------------------ | ------------------------------------ |
+| /api/users             | GET       |                    | Get list of users                    |
+| /api/users             | POST      |                    | Creates a new user                   |
+| /api/users/:id         | GET       | `isAuthenticated`  | Get a single user                    |
+| /api/users/:id         | DELETE    | `hasRole('admin')` | Deletes a user, restriction: 'admin' |
+| /api/users/me          | GET       | `isAuthenticated`  | Get my info                          |
+| /api/users:id/password | PUT       | `isAuthenticated`  | Change a users password              |
 
 ## Usage
 
 ### Basic example **Create USER** `/api/users`:
 
 Request Body:
+
 ```json
 {
   "name": "CRISTIAN MORENO",
@@ -32,9 +34,10 @@ Request Body:
 ```
 
 Response:
+
 ```json
 {
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1OWFiNzkyMWQ1Yzk3NjJlZGQzZmUwZDgiLCJpYXQiOjE1MDQ0MDk4ODksImV4cCI6MTUwNDQyNzg4OX0.2gZPXZ-dQc3kQ1fcIDryHm4gIqWLvcw6guAOnP0ueGU"
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1OWFiNzkyMWQ1Yzk3NjJlZGQzZmUwZDgiLCJpYXQiOjE1MDQ0MDk4ODksImV4cCI6MTUwNDQyNzg4OX0.2gZPXZ-dQc3kQ1fcIDryHm4gIqWLvcw6guAOnP0ueGU"
 }
 ```
 
@@ -56,14 +59,15 @@ Response:
 
 4. Open browser `http://localhost:3030/api/helloworld`.
 
-
 ## Contributors
 
 Thanks goes to these wonderful people ([emoji key](https://github.com/kentcdodds/all-contributors#emoji-key)):
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+
 | [<img src="https://avatars1.githubusercontent.com/u/1481964?v=4" width="100px;"/><br /><sub>Khriztian Moreno</sub>](http://khriztianmoreno.com/)<br />[💻](https://github.com/khriztianmoreno/nodejs-scaffolding/commits?author=khriztianmoreno "Code") [📖](https://github.com/khriztianmoreno/nodejs-scaffolding/commits?author=khriztianmoreno "Documentation") [💡](#example-khriztianmoreno "Examples") |
-| :---: |
+| :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://github.com/kentcdodds/all-contributors) specification. Contributions of any kind welcome!

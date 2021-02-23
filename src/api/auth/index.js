@@ -3,31 +3,31 @@
  * @author: Felipe Garcia <arfgarciama@unal.edu.co>
  */
 
-const express = require('express');
-const config = require('../../config/environment');
-const User = require('../user/user.model');
+const express = require("express")
+const config = require("../../config/environment")
+const User = require("../user/user.model")
 
-const authLocal = require('./local/passport');
-const authFacebook = require('./facebook/passport');
-const authGoogle = require('./google/passport');
-const authTwitter = require('./twitter/passport');
+const authLocal = require("./local/passport")
+const authFacebook = require("./facebook/passport")
+const authGoogle = require("./google/passport")
+const authTwitter = require("./twitter/passport")
 
-const configPassportLocal = require('./local');
-const configPassportFacebook = require('./facebook');
-const configPassportTwitter = require('./twitter');
-const configPassportGoogle = require('./google');
+const configPassportLocal = require("./local")
+const configPassportFacebook = require("./facebook")
+const configPassportTwitter = require("./twitter")
+const configPassportGoogle = require("./google")
 
 // Passport Configuration
-authLocal.setup(User, config);
-authFacebook.setup(User, config);
-authGoogle.setup(User, config);
-authTwitter.setup(User, config);
+authLocal.setup(User, config)
+authFacebook.setup(User, config)
+authGoogle.setup(User, config)
+authTwitter.setup(User, config)
 
-const router = express.Router();
+const router = express.Router()
 
-router.use('/local', configPassportLocal);
-router.use('/facebook', configPassportFacebook);
-router.use('/twitter', configPassportTwitter);
-router.use('/google', configPassportGoogle);
+router.use("/local", configPassportLocal)
+router.use("/facebook", configPassportFacebook)
+router.use("/twitter", configPassportTwitter)
+router.use("/google", configPassportGoogle)
 
-module.exports = router;
+module.exports = router

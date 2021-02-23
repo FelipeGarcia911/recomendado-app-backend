@@ -1,5 +1,5 @@
 {
-  "name": "nodejs-scaffolding",
+  "name": "recomendado-app-backend",
   "version": "1.0.0",
   "description": "A node.js sample application",
   "main": "index.js",
@@ -11,7 +11,7 @@
     "jshint": "jshint src/. test/. --config",
     "mocha": "mocha test/ --recursive",
     "start": "node index.js",
-    "test": "npm run jshint && npm run mocha"
+    "test": "yarn run jshint && yarn run mocha"
   },
   "repository": "https://github.com/khriztianmoreno/nodejs-scaffolding.git",
   "keywords": [
@@ -22,18 +22,13 @@
     "mongodb",
     "passport"
   ],
-  "author": "Cristian Moreno <arfgarciama@unal.edu.co>",
+  "author": "Felipe Garcia <arfgarciama@unal.edu.co>",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/khriztianmoreno/nodejs-scaffolding/issues"
-  },
-  "homepage": "https://github.com/khriztianmoreno/nodejs-scaffolding/blob/master/README.md",
   "engines": {
-    "node": "^6.9.x"
+    "node": "^12.16.x"
   },
   "dependencies": {
     "async": "^3.2.0",
-    "azure-storage": "^2.10.3",
     "babel-polyfill": "^6.26.0",
     "babel-runtime": "^6.26.0",
     "bcryptjs": "^2.4.3",
@@ -45,15 +40,17 @@
     "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
     "errorhandler": "^1.5.1",
+    "eslint-config-prettier": "^8.0.0",
     "express": "^4.17.1",
     "express-jwt": "^6.0.0",
     "express-session": "^1.17.1",
     "jsonwebtoken": "^8.5.1",
-    "lodash": "^4.17.20",
-    "lusca": "^1.6.1",
+    "lodash": "^4.17.21",
+    "lusca": "^1.7.0",
     "method-override": "^3.0.0",
     "moment": "^2.29.1",
-    "mongoose": "^5.11.15",
+    "mongoose": "^5.11.17",
+    "mongoose-fuzzy-searching": "^2.0.2",
     "mongoose-paginate": "^5.0.3",
     "morgan": "~1.10.0",
     "nodemailer": "^6.4.18",
@@ -66,16 +63,22 @@
     "passport-local": "^1.0.0",
     "passport-twitter": "^1.0.4",
     "serve-favicon": "^2.5.0",
-    "stripe": "^8.135.0",
     "winston": "^3.3.3"
   },
   "devDependencies": {
+    "all-contributors-cli": "6.20.0",
     "babel-eslint": "7.2.3",
-    "eslint": "7.19.0",
+    "eslint": "7.20.0",
     "eslint-config-airbnb-base": "14.2.1",
     "eslint-loader": "1.9.0",
     "eslint-plugin-import": "2.22.1",
+    "husky": "^4.3.8",
     "nodemon": "2.0.7",
-    "all-contributors-cli": "6.19.0"
+    "prettier": "2.2.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn run format && git add ."
+    }
   }
 }

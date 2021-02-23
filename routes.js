@@ -2,24 +2,26 @@
  * Main application routes
  */
 
-const cors = require('cors');
+const cors = require("cors")
 
 // Import Endpoints
-const user = require('./src/api/user');
-const auth = require('./src/api/auth');
+const user = require("./src/api/user")
+const auth = require("./src/api/auth")
+const search = require("./src/api/search")
 
-module.exports = (app) => {
-  const whitelist = ['http://localhost:3030'];
-  const API_ROUTE = 'api';
+module.exports = app => {
+  const whitelist = ["http://localhost:3030"]
+  const API_ROUTE = "api"
 
   const corsOptions = {
     origin: whitelist,
     optionsSuccessStatus: 200,
-  };
+  }
 
-  app.use(cors(corsOptions));
+  app.use(cors(corsOptions))
 
   // Insert routes below
-  app.use(`/${API_ROUTE}/users`, user);
-  app.use(`/${API_ROUTE}/auth`, auth);
-};
+  app.use(`/${API_ROUTE}/users`, user)
+  app.use(`/${API_ROUTE}/auth`, auth)
+  app.use(`/${API_ROUTE}/search`, search)
+}

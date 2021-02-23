@@ -6,16 +6,16 @@
 module.exports = {
   // MongoDB connection options
   mongo: {
-    uri: 'mongodb://localhost/nodejs-scaffolding-test',
+    uri: "mongodb://localhost/nodejs-scaffolding-test",
   },
   sequelize: {
-    uri: 'sqlite://',
+    uri: "sqlite://",
     options: {
       logging: false,
-      storage: 'test.sqlite',
+      storage: "test.sqlite",
       define: {
         timestamps: false,
       },
     },
   },
-};
+}

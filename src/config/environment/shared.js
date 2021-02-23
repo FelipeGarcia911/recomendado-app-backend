@@ -4,6 +4,6 @@
  */
 
 exports = module.exports = {
-  FACEBOOK_ID: '',
-  FACEBOOK_SECRET: '',
-};
+  FACEBOOK_ID: "",
+  FACEBOOK_SECRET: "",
+}
